@@ -1,0 +1,29 @@
+<resources>>
+    <string name="app_name">CamStore</string>
+    <string name="Add">Add</string>
+    <string name="Pic">Pic</string>
+    <string name="Video">Video</string>
+    <string name="Exit">Exit</string>
+    <string name="Deletebutton">Delete</string>
+    <string name="Sharebutton">Share</string>
+    <string name="Cutbutton">Cut</string>
+    <string name="Renamebutton">Rename</string>
+    <string name="Cancelbutton">Cancel</string>
+    <string name="Pastebutton">Paste</string>
+    <string name="Cancelbut">Cancel</string>
+    <string name="enterfoldername">Enter Folder Name.</string>
+    <string name="enternewname">Enter New Name.</string>
+    <string name="Refresh">Refresh</string>
+    <string name="HideFolders">Hide Folders</string>
+    <string name="UnHideFolders">Unhide Folders</string>
+    <string name="Encryptit">Encrypt Files</string>
+    <string name="Decryptit">Decrypt Files</string>
+    <string name="Enterpass">Enter your Password</string>
+    <string name="ConfirmPass">Confirm your Password</string>
+    <string name="Passmatch">Password Matched</string>
+    <string name="Passunmatch">Password Not Matching!</string>
+    <string name="nullfiles">Null File</string>
+    <string name="deleteconfirm">Do You Really Want to Delete!!!</string>
+    <string name="select_all">Select All</string>
+    <string name="rate">Rate It</string>
+</resources>

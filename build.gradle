@@ -1,14 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.3"
+    compileSdkVersion 28
+    buildToolsVersion '28.0.0'
     defaultConfig {
         applicationId "sagar.mehar.camstore"
         minSdkVersion 16
-        targetSdkVersion 24
-        versionCode 2
-        versionName "1.01"
+        targetSdkVersion 28
+        versionCode 6
+        versionName "1.05"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -20,17 +20,17 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.afollestad:material-camera:0.4.4'
-    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile 'com.android.support:appcompat-v7:24.2.1'
-    testCompile 'junit:junit:4.12'
-    compile 'com.github.clans:fab:1.6.4'
-    compile 'com.android.support:design:24.2.1'
-    compile 'com.github.chrisbanes:PhotoView:2.0.0'
-    compile 'pub.devrel:easypermissions:0.4.0'
-    compile 'com.github.doctoror.particlesdrawable:library:1.0.4'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.squareup.picasso:picasso:2.71828' //updated
+    implementation 'com.android.support:appcompat-v7:28.0.0' //updated
+    implementation 'com.android.support:design:28.0.0'  //updated
+    implementation 'com.github.clans:fab:1.6.4'//updated
+    implementation 'pub.devrel:easypermissions:2.0.0'  //updated
+    implementation 'com.camerakit:camerakit:1.0.0-beta3.9'//updated
+    implementation 'com.camerakit:jpegkit:0.1.0'//updated
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.61'//updated
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:0.24.0'//updated
+    implementation 'com.android.support:recyclerview-v7:28.0.0' //updated
+    implementation 'com.android.support:exifinterface:28.0.0'     //this is added due to picasso clashing with appcompat
+    implementation 'com.android.support:support-vector-drawable:28.0.0' //this is added due to picasso clashing with appcompat
 }

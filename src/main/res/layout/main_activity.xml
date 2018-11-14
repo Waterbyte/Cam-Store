@@ -1,73 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="match_parent">
 
-    tools:context="sagar.mehar.camstore.MainActivity">
-
-    <GridView
-        android:id="@+id/gridView"
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:columnWidth="105dp"
-        android:stretchMode="spacingWidthUniform"
-        android:numColumns="auto_fit"
-        android:horizontalSpacing="2dp"
-        android:longClickable="true"
-        android:smoothScrollbar="true"
-        android:layout_marginTop="10dp"
-        android:verticalSpacing="10dp"
-        android:scrollingCache="true"
-        />
-
+        android:layout_height="match_parent">
+    </FrameLayout>
 
     <com.github.clans.fab.FloatingActionMenu
-        android:id="@+id/menu_yellow"
+        android:id="@+id/fab_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        fab:menu_labels_style="@style/MenuLabelsStyle"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="5dp"
         fab:menu_animationDelayPerItem="0"
-        fab:menu_shadowColor="#00000000"
         fab:menu_colorNormal="#b4212121"
         fab:menu_colorPressed="#00000000"
         fab:menu_colorRipple="#080808"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="5dp"
-        >
+        fab:menu_labels_style="@style/MenuLabelsStyle"
+        fab:menu_shadowColor="#00000000">
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/addfoldBut"
+            style="@style/MenuButtonsStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/addfolder"
-            fab:fabSize="auto"
-            style="@style/MenuButtonsStyle" />
+            fab:fabSize="auto" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/camBut"
+            style="@style/MenuButtonsStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_camera"
-            fab:fabSize="auto"
-            style="@style/MenuButtonsStyle" />
+            fab:fabSize="auto" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/vidBut"
+            style="@style/MenuButtonsStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_video"
-            fab:fabSize="auto"
-            style="@style/MenuButtonsStyle" />
-
-
-
-
+            fab:fabSize="auto" />
     </com.github.clans.fab.FloatingActionMenu>
-
-
 </RelativeLayout>

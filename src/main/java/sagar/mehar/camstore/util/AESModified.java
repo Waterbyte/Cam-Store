@@ -38,12 +38,12 @@ class AES {
 
     // Key derivation specification - changing will break existing streams!
     private static final String KEYGEN_SPEC = "xxxxxxxxxxxxxx";
-    private static final int SALT_LENGTH = xxxx; // in bytes
-    private static final int AUTH_KEY_LENGTH = xxxx; // in bytes
-    private static final int ITERATIONS = xxxx;
+    private static final int SALT_LENGTH = 43; // in bytes
+    private static final int AUTH_KEY_LENGTH = 43; // in bytes
+    private static final int ITERATIONS = 34;
 
     // Process input/output streams in chunks - arbitrary
-    private static final int BUFFER_SIZE = xxxx;
+    private static final int BUFFER_SIZE = 43;
 
 
     /**

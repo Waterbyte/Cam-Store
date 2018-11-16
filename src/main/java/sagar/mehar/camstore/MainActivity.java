@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 
 import com.github.clans.fab.FloatingActionButton;
@@ -46,7 +47,13 @@ public class MainActivity extends BaseAppCompatActivity implements EasyPermissio
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        Log.d("Current Path",currentPath);
+        Log.d("Home path   ",homePath);
+        if(!currentPath.equalsIgnoreCase(homePath)){
+            setCurrentPath(currentPath.substring(0,currentPath.lastIndexOf("/")));
+        }else {
+            super.onBackPressed();
+        }
     }
 
 

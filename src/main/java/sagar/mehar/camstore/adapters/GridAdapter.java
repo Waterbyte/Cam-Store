@@ -12,9 +12,11 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import sagar.mehar.camstore.R;
+import sagar.mehar.camstore.utils.SupportedFileFilter;
 
 /**
  * Created by Mountain on 09-11-18.
@@ -40,8 +42,13 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        Picasso.get().load(R.drawable.addfolder).into(viewHolder.gridImageView);
-        //  viewHolder.gridImageView.setImageResource(mData[i]);
+        String filePath = mData.get(i);
+        File imageFile = new File(filePath);
+        if (imageFile.isDirectory()) {
+            Picasso.get().load(R.drawable.addfolder).into(viewHolder.gridImageView);
+        } else if (filePath.endsWith(".jpg") || filePath.endsWith(".png")) {
+            Picasso.get().load(imageFile).fit().into(viewHolder.gridImageView);
+        }
     }
 
 
@@ -74,8 +81,8 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
         ViewHolder(View itemView) {
             super(itemView);
             gridImageView = itemView.findViewById(R.id.gridImage);
-            gridDescriptionView = itemView.findViewById(R.id.gridDescription);
-            gridCheckBox = itemView.findViewById(R.id.gridCheckBox);
+            //gridDescriptionView = itemView.findViewById(R.id.gridDescription);
+            //gridCheckBox = itemView.findViewById(R.id.gridCheckBox);
             itemView.setOnClickListener(this);
         }
 

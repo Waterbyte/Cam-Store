@@ -1,5 +1,6 @@
 package sagar.mehar.camstore;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,6 +16,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 import sagar.mehar.camstore.adapters.GridAdapter;
+import sagar.mehar.camstore.utils.Constants;
 import sagar.mehar.camstore.utils.SupportedFileFilter;
 
 /**
@@ -27,6 +29,7 @@ public class ExplorerFragment extends Fragment {
     private TextView fragmentDescription = null;
     private ArrayList<String> supportedFiles = null;
     private SupportedFileFilter supportedFileFilter;
+    private Context localContext = null;
 
     @Nullable
     @Override
@@ -37,6 +40,7 @@ public class ExplorerFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+        localContext = getActivity();
         recyclerView = view.findViewById(R.id.fragmentView);
         fragmentDescription = view.findViewById(R.id.fragmentDescription);
         supportedFileFilter = new SupportedFileFilter();
@@ -54,10 +58,10 @@ public class ExplorerFragment extends Fragment {
             for (File file : supFiles) {
                 supportedFiles.add(file.getAbsolutePath());
             }
-            int numberOfColumns = 3;
-            recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),numberOfColumns));
-            gridAdapter = new GridAdapter(getActivity(), supportedFiles);
-            gridAdapter.setClickListener((MainActivity) getActivity());
+
+            recyclerView.setLayoutManager(new GridLayoutManager(localContext, Constants.GRIDCOLUMNS));
+            gridAdapter = new GridAdapter(localContext, supportedFiles);
+            gridAdapter.setClickListener((MainActivity) localContext);
             recyclerView.setAdapter(gridAdapter);
         } else {
             fragmentDescription.setVisibility(View.VISIBLE);
@@ -68,7 +72,15 @@ public class ExplorerFragment extends Fragment {
 
 
     public void onClickListener(int position) {
+        String filePath = supportedFiles.get(position);
+        File clickedFile = new File(filePath);
+        if(clickedFile.isDirectory()){
+            ((MainActivity)localContext).setCurrentPath(filePath);
+        }else if(filePath.endsWith(".jpg")||filePath.endsWith("png")){
 
+        }
     }
+
+
 
 }

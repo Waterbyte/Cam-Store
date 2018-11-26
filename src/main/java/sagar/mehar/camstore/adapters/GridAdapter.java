@@ -92,4 +92,9 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
         }
     }
 
+    public void clearAdapter(){
+        mData.clear();
+        notifyDataSetChanged();
+    }
+
 }

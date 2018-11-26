@@ -63,6 +63,7 @@ public class ExplorerFragment extends Fragment {
             gridAdapter = new GridAdapter(localContext, supportedFiles);
             gridAdapter.setClickListener((MainActivity) localContext);
             recyclerView.setAdapter(gridAdapter);
+
         } else {
             fragmentDescription.setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.GONE);

@@ -34,4 +34,5 @@
     <string name="information">Information</string>
     <string name="permission_dialog">Permission required to capture and save photos</string>
     <string name="Image">Image</string>
+    <string name="Capture_Image">Catpure Image</string>
 </resources>

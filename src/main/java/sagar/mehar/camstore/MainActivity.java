@@ -31,6 +31,7 @@ public class MainActivity extends BaseAppCompatActivity implements EasyPermissio
     private String currentPath = null;
     private FloatingActionButton camBut, vidBut, addfoldBut;
     private ExplorerFragment explorerFragment = null;
+    private final static String TAG = "Main Activity";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,16 +43,22 @@ public class MainActivity extends BaseAppCompatActivity implements EasyPermissio
     @Override
     protected void onStart() {
         super.onStart();
+        Log.v(TAG, "on Start called");
         permissions();  //fragment is visible now
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
     public void onBackPressed() {
-        Log.d("Current Path",currentPath);
-        Log.d("Home path   ",homePath);
-        if(!currentPath.equalsIgnoreCase(homePath)){
-            setCurrentPath(currentPath.substring(0,currentPath.lastIndexOf("/")));
-        }else {
+        Log.d("Current Path", currentPath);
+        Log.d("Home path   ", homePath);
+        if (!currentPath.equalsIgnoreCase(homePath)) {
+            setCurrentPath(currentPath.substring(0, currentPath.lastIndexOf("/")));
+        } else {
             super.onBackPressed();
         }
     }
@@ -78,12 +85,15 @@ public class MainActivity extends BaseAppCompatActivity implements EasyPermissio
 
     private void setFragment() {
         FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        explorerFragment = new ExplorerFragment();
-        fragmentTransaction.add(R.id.fragmentContainer, explorerFragment, Constants.EXPLORER_FRAGMENT);
-        fragmentTransaction.commit();
-        fm.executePendingTransactions();
-        setCurrentPath(homePath);
+        explorerFragment = (ExplorerFragment) fm.findFragmentByTag(Constants.EXPLORER_FRAGMENT);
+        if (explorerFragment == null) {
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            explorerFragment = new ExplorerFragment();
+            fragmentTransaction.add(R.id.fragmentContainer, explorerFragment, Constants.EXPLORER_FRAGMENT);
+            fragmentTransaction.commit();
+            fm.executePendingTransactions();
+            setCurrentPath(homePath);
+        }
     }
 
     @AfterPermissionGranted(Constants.PERMSSIONS)
@@ -121,6 +131,7 @@ public class MainActivity extends BaseAppCompatActivity implements EasyPermissio
             @Override
             public void onClick(View v) {
                 cameraIntent = new Intent(MainActivity.this, CameraActivity.class);
+                cameraIntent.putExtra(Constants.CURRENT_PATH, currentPath);
                 startActivity(cameraIntent);
             }
         });

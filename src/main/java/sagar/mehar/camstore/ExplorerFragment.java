@@ -42,6 +42,7 @@ public class ExplorerFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         localContext = getActivity();
         recyclerView = view.findViewById(R.id.fragmentView);
+        recyclerView.setHasFixedSize(true);
         fragmentDescription = view.findViewById(R.id.fragmentDescription);
         supportedFileFilter = new SupportedFileFilter();
         supportedFiles = new ArrayList<>();

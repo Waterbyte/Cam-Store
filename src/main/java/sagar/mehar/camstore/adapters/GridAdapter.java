@@ -45,9 +45,9 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
         String filePath = mData.get(i);
         File imageFile = new File(filePath);
         if (imageFile.isDirectory()) {
-            Picasso.get().load(R.drawable.addfolder).into(viewHolder.gridImageView);
+            Picasso.get().load(R.drawable.folderdisplay).into(viewHolder.gridImageView);
         } else if (filePath.endsWith(".jpg") || filePath.endsWith(".png")) {
-            Picasso.get().load(imageFile).fit().into(viewHolder.gridImageView);
+            Picasso.get().load(imageFile).into(viewHolder.gridImageView);
         }
     }
 
@@ -92,7 +92,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
         }
     }
 
-    public void clearAdapter(){
+    public void clearAdapter() {
         mData.clear();
         notifyDataSetChanged();
     }

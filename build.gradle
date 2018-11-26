@@ -31,6 +31,7 @@ dependencies {
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.61'//updated
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:0.24.0'//updated
     implementation 'com.android.support:recyclerview-v7:28.0.0' //updated
+    implementation 'com.android.support:recyclerview-selection:28.0.0'
     implementation 'com.android.support:exifinterface:28.0.0'     //this is added due to picasso clashing with appcompat
     implementation 'com.android.support:support-vector-drawable:28.0.0' //this is added due to picasso clashing with appcompat
 }

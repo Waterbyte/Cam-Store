@@ -35,4 +35,6 @@
     <string name="permission_dialog">Permission required to capture and save photos</string>
     <string name="Image">Image</string>
     <string name="Capture_Image">Catpure Image</string>
+    <string name="change_camera">Change camera</string>
+    <string name="switch_flash_mode">Switch flash mode</string>
 </resources>

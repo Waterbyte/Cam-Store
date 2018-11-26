@@ -3,14 +3,17 @@ package sagar.mehar.camstore.utils;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.camerakit.CameraKit;
 import com.camerakit.CameraKitView;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.Date;
 
 import sagar.mehar.camstore.R;
 
@@ -23,7 +26,7 @@ public class CameraActivity extends Activity {
 
 
     private CameraKitView cameraKitView;
-    private ImageButton clickImage;
+    private ImageButton clickImage, reverseCamera, reverseFlash;
     private String currentPath;
 
     @Override
@@ -32,7 +35,10 @@ public class CameraActivity extends Activity {
         setContentView(R.layout.camera_activity);
         currentPath = getIntent().getStringExtra(Constants.CURRENT_PATH);
         cameraKitView = findViewById(R.id.camera);
+        cameraKitView.setFlash(CameraKit.FLASH_OFF);
         clickImage = findViewById(R.id.clickImage);
+        reverseCamera = findViewById(R.id.reverseCamera);
+        reverseFlash = findViewById(R.id.reverseFlash);
         setupListeners();
     }
 
@@ -44,7 +50,8 @@ public class CameraActivity extends Activity {
                 cameraKitView.captureImage(new CameraKitView.ImageCallback() {
                     @Override
                     public void onImage(CameraKitView cameraKitView, byte[] photo) {
-                        File savedPhoto = new File(currentPath, "photo.jpg");
+                        CharSequence s = DateFormat.format("MM-dd-yy hh-mm-ss", new Date().getTime());
+                        File savedPhoto = new File(currentPath, s.toString() + " cam.jpg");
                         try {
                             FileOutputStream outputStream = new FileOutputStream(savedPhoto.getPath());
                             outputStream.write(photo);
@@ -57,6 +64,34 @@ public class CameraActivity extends Activity {
                 });
             }
         });
+
+
+        reverseCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (cameraKitView.getFacing() == CameraKit.FACING_BACK)
+                    cameraKitView.setFacing(CameraKit.FACING_FRONT);
+                else
+                    cameraKitView.setFacing(CameraKit.FACING_BACK);
+            }
+        });
+
+        reverseFlash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (cameraKitView.getFlash() == CameraKit.FLASH_OFF) {
+                    reverseFlash.setImageResource(R.drawable.flash_on_white);
+                    cameraKitView.setFlash(CameraKit.FLASH_ON);
+                } else {
+                    reverseFlash.setImageResource(R.drawable.flash_off_white);
+                    cameraKitView.setFlash(CameraKit.FLASH_OFF);
+                }
+
+
+            }
+        });
+
+
     }
 
     @Override

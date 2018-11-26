@@ -50,6 +50,7 @@ public class MainActivity extends BaseAppCompatActivity implements EasyPermissio
     @Override
     protected void onResume() {
         super.onResume();
+        setCurrentPath(currentPath);
     }
 
     @Override

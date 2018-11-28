@@ -1,10 +1,12 @@
 package sagar.mehar.camstore;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.FileProvider;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,6 +18,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 import sagar.mehar.camstore.adapters.GridAdapter;
+import sagar.mehar.camstore.utils.CommonUtility;
 import sagar.mehar.camstore.utils.Constants;
 import sagar.mehar.camstore.utils.SupportedFileFilter;
 
@@ -74,15 +77,37 @@ public class ExplorerFragment extends Fragment {
 
 
     public void onClickListener(int position) {
-        String filePath = supportedFiles.get(position);
-        File clickedFile = new File(filePath);
-        if(clickedFile.isDirectory()){
-            ((MainActivity)localContext).setCurrentPath(filePath);
-        }else if(filePath.endsWith(".jpg")||filePath.endsWith("png")){
 
+        if (gridAdapter.getIsInChoiceMode()) {
+            gridAdapter.switchSelectedState(position);
+        } else {
+
+
+            String filePath = supportedFiles.get(position);
+            File clickedFile = new File(filePath);
+            if (clickedFile.isDirectory()) {
+                ((MainActivity) localContext).setCurrentPath(filePath);
+            } else if (filePath.endsWith(".jpg") || filePath.endsWith("png")) {
+                Uri photoURI = FileProvider.getUriForFile(localContext,
+                        BuildConfig.APPLICATION_ID + ".provider",
+                        clickedFile);
+                CommonUtility.openImage(localContext, photoURI);
+            }
         }
     }
 
+    public boolean onLongClickListener(int position) {
+        gridAdapter.beginChoiceMode(position);
+        return true;
+    }
 
+    public boolean ifMultiSelectEnabled(){
+        return gridAdapter.getIsInChoiceMode();
+    }
+
+    public void stopMultiSelect(){
+        gridAdapter.setIsInChoiceMode(false);
+        gridAdapter.clearSelectedState();
+    }
 
 }

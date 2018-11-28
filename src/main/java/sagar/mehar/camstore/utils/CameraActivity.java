@@ -2,7 +2,6 @@ package sagar.mehar.camstore.utils;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.os.Environment;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;

@@ -15,7 +15,6 @@ import com.github.clans.fab.FloatingActionButton;
 
 import java.util.List;
 
-import androidx.recyclerview.selection.SelectionTracker;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 import sagar.mehar.camstore.adapters.GridAdapter;
@@ -27,12 +26,12 @@ import sagar.mehar.camstore.utils.Constants;
  */
 
 public class MainActivity extends BaseAppCompatActivity implements EasyPermissions.PermissionCallbacks, GridAdapter.ItemClickListener {
+    private final static String TAG = "Main Activity";
     Intent cameraIntent = null;
     private String homePath = null;
     private String currentPath = null;
     private FloatingActionButton camBut, vidBut, addfoldBut;
     private ExplorerFragment explorerFragment = null;
-    private final static String TAG = "Main Activity";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,12 +55,15 @@ public class MainActivity extends BaseAppCompatActivity implements EasyPermissio
 
     @Override
     public void onBackPressed() {
-        Log.d("Current Path", currentPath);
-        Log.d("Home path   ", homePath);
-        if (!currentPath.equalsIgnoreCase(homePath)) {
-            setCurrentPath(currentPath.substring(0, currentPath.lastIndexOf("/")));
+
+        if (explorerFragment != null && explorerFragment.ifMultiSelectEnabled()) {
+                explorerFragment.stopMultiSelect();
         } else {
-            super.onBackPressed();
+            if (!currentPath.equalsIgnoreCase(homePath)) {
+                setCurrentPath(currentPath.substring(0, currentPath.lastIndexOf("/")));
+            } else {
+                super.onBackPressed();
+            }
         }
     }
 
@@ -149,5 +151,10 @@ public class MainActivity extends BaseAppCompatActivity implements EasyPermissio
     @Override
     public void onItemClick(View view, int position) {
         explorerFragment.onClickListener(position);
+    }
+
+    @Override
+    public boolean onItemLongClicked(View view, int position) {
+        return explorerFragment.onLongClickListener(position);
     }
 }

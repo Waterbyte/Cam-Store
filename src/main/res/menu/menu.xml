@@ -33,37 +33,7 @@
         android:visible="false"
         android:orderInCategory="4"
         app:showAsAction="always"/>
-    <item
-        android:id="@+id/cutmenu"
-        android:icon="@drawable/cutpic"
-        android:title="@string/Cutbutton"
-        android:visible="false"
-        android:orderInCategory="5"
-        app:showAsAction="always"/>
-    <item
-        android:id="@+id/pastemenu"
-        android:icon="@drawable/pastepic"
-        android:title="@string/Pastebutton"
-        android:visible="false"
-        android:orderInCategory="16"
-        app:showAsAction="always"/>
-    <item
-        android:id="@+id/cancelPaste"
-        android:title="@string/Cancelbutton"
-        android:icon="@drawable/ic_delete"
-        app:showAsAction="always"
-        android:visible="false"
-        />
 
-
-    <item
-        android:id="@+id/action_hide"
-        android:title="@string/HideFolders"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_unhide"
-        android:title="@string/UnHideFolders"
-        app:showAsAction="never" />
     <item
         android:id="@+id/action_encrypt"
         android:title="@string/Encryptit"

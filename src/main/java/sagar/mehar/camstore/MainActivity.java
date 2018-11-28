@@ -18,6 +18,7 @@ import java.util.List;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 import sagar.mehar.camstore.adapters.GridAdapter;
+import sagar.mehar.camstore.utils.ActionBarCallback;
 import sagar.mehar.camstore.utils.CameraActivity;
 import sagar.mehar.camstore.utils.Constants;
 
@@ -56,15 +57,13 @@ public class MainActivity extends BaseAppCompatActivity implements EasyPermissio
     @Override
     public void onBackPressed() {
 
-        if (explorerFragment != null && explorerFragment.ifMultiSelectEnabled()) {
-                explorerFragment.stopMultiSelect();
+
+        if (!currentPath.equalsIgnoreCase(homePath)) {
+            setCurrentPath(currentPath.substring(0, currentPath.lastIndexOf("/")));
         } else {
-            if (!currentPath.equalsIgnoreCase(homePath)) {
-                setCurrentPath(currentPath.substring(0, currentPath.lastIndexOf("/")));
-            } else {
-                super.onBackPressed();
-            }
+            super.onBackPressed();
         }
+
     }
 
 
@@ -86,6 +85,9 @@ public class MainActivity extends BaseAppCompatActivity implements EasyPermissio
         permissions(); //ask permission again
     }
 
+    public ExplorerFragment getFragment() {
+        return explorerFragment;
+    }
 
     private void setFragment() {
         FragmentManager fm = getSupportFragmentManager();
@@ -155,6 +157,7 @@ public class MainActivity extends BaseAppCompatActivity implements EasyPermissio
 
     @Override
     public boolean onItemLongClicked(View view, int position) {
+        MainActivity.this.startActionMode(new ActionBarCallback(MainActivity.this));
         return explorerFragment.onLongClickListener(position);
     }
 }

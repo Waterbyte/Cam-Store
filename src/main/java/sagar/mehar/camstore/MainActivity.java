@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
+import android.view.ActionMode;
 import android.view.View;
 
 import com.github.clans.fab.FloatingActionButton;
@@ -33,6 +34,7 @@ public class MainActivity extends BaseAppCompatActivity implements EasyPermissio
     private String currentPath = null;
     private FloatingActionButton camBut, vidBut, addfoldBut;
     private ExplorerFragment explorerFragment = null;
+    private ActionMode actionMode;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -157,7 +159,11 @@ public class MainActivity extends BaseAppCompatActivity implements EasyPermissio
 
     @Override
     public boolean onItemLongClicked(View view, int position) {
-        MainActivity.this.startActionMode(new ActionBarCallback(MainActivity.this));
+        actionMode = MainActivity.this.startActionMode(new ActionBarCallback(MainActivity.this));
         return explorerFragment.onLongClickListener(position);
+    }
+
+    public ActionMode getActionMode() {
+        return actionMode;
     }
 }

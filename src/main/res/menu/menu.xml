@@ -1,50 +1,49 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<menu xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".MainActivity_old">
-    <item
-        android:id="@+id/selectallmenu"
-        android:icon="@drawable/selectall"
-        android:title="@string/select_all"
-        android:orderInCategory="1"
-        android:visible="false"
-        app:showAsAction="always"
-        />
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/sharemenu"
         android:icon="@drawable/ic_share"
+        android:orderInCategory="1"
         android:title="@string/Sharebutton"
-        android:visible="false"
-        android:orderInCategory="2"
-        app:showAsAction="always"/>
+        android:visible="true"
+        android:showAsAction="always"
+        tools:ignore="AppCompatResource" />
     <item
         android:id="@+id/renamemenu"
         android:icon="@drawable/renamepic"
+        android:orderInCategory="2"
         android:title="@string/Renamebutton"
-        android:visible="false"
-        android:orderInCategory="3"
-        app:showAsAction="always"
-        />
+        android:visible="true"
+        android:showAsAction="always"
+        tools:ignore="AppCompatResource" />
     <item
         android:id="@+id/deletemenu"
         android:icon="@drawable/deletepic"
+        android:orderInCategory="3"
         android:title="@string/Deletebutton"
-        android:visible="false"
-        android:orderInCategory="4"
-        app:showAsAction="always"/>
+        android:visible="true"
+        android:showAsAction="always"
+        tools:ignore="AppCompatResource"  />
 
     <item
         android:id="@+id/action_encrypt"
+        android:orderInCategory="4"
         android:title="@string/Encryptit"
-        app:showAsAction="never" />
+        android:showAsAction="never"
+        tools:ignore="AppCompatResource" />
     <item
         android:id="@+id/action_decrypt"
+        android:orderInCategory="5"
         android:title="@string/Decryptit"
-        app:showAsAction="never" />
+        android:showAsAction="never"
+        tools:ignore="AppCompatResource" />
 
     <item
         android:id="@+id/rateIt"
+        android:orderInCategory="6"
         android:title="@string/rate"
-        app:showAsAction="never"/>
+        android:showAsAction="never"
+        tools:ignore="AppCompatResource" />
 </menu>

@@ -96,8 +96,6 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
-
-
         if (mIsInChoiceMode) {
             viewHolder.gridCheckBox.setVisibility(View.VISIBLE);
             viewHolder.gridCheckBox.setChecked(mSelectedItems.get(position));
@@ -114,6 +112,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
             viewHolder.gridDescriptionView.setText(imageFile.getName());
         } else if (filePath.endsWith(".jpg") || filePath.endsWith(".png")) {
             Glide.with(localContext).load(imageFile).into(viewHolder.gridImageView);
+            viewHolder.gridDescriptionView.setText("");
         }
     }
 
@@ -124,7 +123,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
     }
 
     // convenience method for getting data at click position
-    String getItem(int id) {
+    public String getItem(int id) {
         return mData.get(id);
     }
 

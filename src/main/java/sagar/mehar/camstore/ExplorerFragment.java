@@ -81,16 +81,12 @@ public class ExplorerFragment extends Fragment {
         if (gridAdapter.getIsInChoiceMode()) {
             gridAdapter.switchSelectedState(position);
         } else {
-
-
             String filePath = supportedFiles.get(position);
             File clickedFile = new File(filePath);
             if (clickedFile.isDirectory()) {
                 ((MainActivity) localContext).setCurrentPath(filePath);
             } else if (filePath.endsWith(".jpg") || filePath.endsWith("png")) {
-                Uri photoURI = FileProvider.getUriForFile(localContext,
-                        BuildConfig.APPLICATION_ID + ".provider",
-                        clickedFile);
+                Uri photoURI = Uri.parse("file://"+clickedFile.getAbsolutePath());
                 CommonUtility.openImage(localContext, photoURI);
             }
         }
@@ -101,13 +97,30 @@ public class ExplorerFragment extends Fragment {
         return true;
     }
 
-    public boolean ifMultiSelectEnabled(){
+    public boolean ifMultiSelectEnabled() {
         return gridAdapter.getIsInChoiceMode();
     }
 
-    public void stopMultiSelect(){
+    public void stopMultiSelect() {
         gridAdapter.setIsInChoiceMode(false);
         gridAdapter.clearSelectedState();
     }
+
+    public ArrayList<String> getSelectedItems() {
+        ArrayList<String> selectedItems = new ArrayList<>();
+        for (Integer i : gridAdapter.getSelectedItems()) {
+            selectedItems.add(gridAdapter.getItem(i));
+        }
+        return selectedItems;
+    }
+
+    public int getSelectedItemCount() {
+        return gridAdapter.getSelectedItemCount();
+    }
+
+    public void notifyGridDataChanged(){
+        gridAdapter.notifyDataSetChanged();
+    }
+
 
 }

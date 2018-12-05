@@ -10,5 +10,6 @@ public class Constants {
     public static final int PERMSSIONS = 2332;
     public static final int GRIDCOLUMNS = 3;
     public static final String CURRENT_PATH = "CURRENT_PATH";
+    public static final String ORIGIN_DELETE = "ORIGIN_DELETE";
 
 }

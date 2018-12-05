@@ -79,10 +79,10 @@ public class CameraActivity extends Activity {
             @Override
             public void onClick(View view) {
                 if (cameraKitView.getFlash() == CameraKit.FLASH_OFF) {
-                    reverseFlash.setImageResource(R.drawable.flash_on_white);
+                    reverseFlash.setImageResource(R.drawable.ic_action_flash);
                     cameraKitView.setFlash(CameraKit.FLASH_ON);
                 } else {
-                    reverseFlash.setImageResource(R.drawable.flash_off_white);
+                    reverseFlash.setImageResource(R.drawable.ic_action_flash_reverse);
                     cameraKitView.setFlash(CameraKit.FLASH_OFF);
                 }
 

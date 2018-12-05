@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/sharemenu"
-        android:icon="@drawable/ic_share"
+        android:icon="@drawable/ic_action_share"
         android:orderInCategory="1"
         android:title="@string/Sharebutton"
         android:visible="true"
@@ -12,7 +12,7 @@
         tools:ignore="AppCompatResource" />
     <item
         android:id="@+id/renamemenu"
-        android:icon="@drawable/renamepic"
+        android:icon="@drawable/ic_action_rename"
         android:orderInCategory="2"
         android:title="@string/Renamebutton"
         android:visible="true"
@@ -20,7 +20,7 @@
         tools:ignore="AppCompatResource" />
     <item
         android:id="@+id/deletemenu"
-        android:icon="@drawable/deletepic"
+        android:icon="@drawable/ic_action_delete"
         android:orderInCategory="3"
         android:title="@string/Deletebutton"
         android:visible="true"

@@ -1,6 +1,7 @@
 package sagar.mehar.camstore;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
@@ -19,22 +20,26 @@ import java.util.List;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 import sagar.mehar.camstore.adapters.GridAdapter;
+import sagar.mehar.camstore.interfaces.ConfirmationInterface;
 import sagar.mehar.camstore.utils.ActionBarCallback;
 import sagar.mehar.camstore.utils.CameraActivity;
 import sagar.mehar.camstore.utils.Constants;
+import sagar.mehar.camstore.utils.NewFolderDialog;
 
 /**
  * Created by Mountain on 04-11-18.
  */
 
-public class MainActivity extends BaseAppCompatActivity implements EasyPermissions.PermissionCallbacks, GridAdapter.ItemClickListener {
+public class MainActivity extends BaseAppCompatActivity implements EasyPermissions.PermissionCallbacks, GridAdapter.ItemClickListener, ConfirmationInterface {
     private final static String TAG = "Main Activity";
     Intent cameraIntent = null;
     private String homePath = null;
     private String currentPath = null;
-    private FloatingActionButton camBut, vidBut, addfoldBut;
+    private FloatingActionButton camBut, addfoldBut;
     private ExplorerFragment explorerFragment = null;
     private ActionMode actionMode;
+    private NewFolderDialog newFolderDialog;
+    private Context localContext = this;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -123,14 +128,14 @@ public class MainActivity extends BaseAppCompatActivity implements EasyPermissio
 
     private void FloatingActionButtonFunction() {
         camBut = findViewById(R.id.camBut);
-        vidBut = findViewById(R.id.vidBut);
+
         addfoldBut = findViewById(R.id.addfoldBut);
         if (currentPath == homePath) {
-            vidBut.setVisibility(View.GONE);
+
             camBut.setVisibility(View.VISIBLE);
             addfoldBut.setVisibility(View.VISIBLE);
         } else {
-            vidBut.setVisibility(View.GONE);
+
             camBut.setVisibility(View.VISIBLE);
             addfoldBut.setVisibility(View.GONE);
         }
@@ -147,7 +152,7 @@ public class MainActivity extends BaseAppCompatActivity implements EasyPermissio
         addfoldBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                newFolderDialog = new NewFolderDialog(localContext, currentPath);
             }
         });
     }
@@ -165,5 +170,16 @@ public class MainActivity extends BaseAppCompatActivity implements EasyPermissio
 
     public ActionMode getActionMode() {
         return actionMode;
+    }
+
+
+    @Override
+    public void approved_confirm(String dialogOrigin) {
+
+    }
+
+    @Override
+    public void cancel_confirm(String dialogOrigin) {
+
     }
 }

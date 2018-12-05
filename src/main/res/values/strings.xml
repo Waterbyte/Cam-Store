@@ -37,4 +37,5 @@
     <string name="Capture_Image">Catpure Image</string>
     <string name="change_camera">Change camera</string>
     <string name="switch_flash_mode">Switch flash mode</string>
+    <string name="yes">Yes</string>
 </resources>

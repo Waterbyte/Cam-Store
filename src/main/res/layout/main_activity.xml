@@ -20,9 +20,9 @@
         android:layout_alignParentRight="true"
         android:layout_margin="5dp"
         fab:menu_animationDelayPerItem="0"
-        fab:menu_colorNormal="#b4212121"
-        fab:menu_colorPressed="#00000000"
-        fab:menu_colorRipple="#080808"
+        fab:menu_colorNormal="@color/colorPrimary"
+        fab:menu_colorPressed="@color/colorPrimaryDark"
+        fab:menu_colorRipple="@color/colorPrimary"
         fab:menu_labels_style="@style/MenuLabelsStyle"
         fab:menu_shadowColor="#00000000">
 
@@ -31,7 +31,7 @@
             style="@style/MenuButtonsStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/addfolder"
+            android:src="@drawable/ic_action_folder"
             fab:fabSize="auto" />
 
         <com.github.clans.fab.FloatingActionButton
@@ -39,15 +39,8 @@
             style="@style/MenuButtonsStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_camera"
+            android:src="@drawable/ic_action_camera"
             fab:fabSize="auto" />
 
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/vidBut"
-            style="@style/MenuButtonsStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_video"
-            fab:fabSize="auto" />
     </com.github.clans.fab.FloatingActionMenu>
 </RelativeLayout>

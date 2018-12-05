@@ -27,7 +27,7 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/button_click_gray"
         android:contentDescription="@string/switch_flash_mode"
-        android:src="@drawable/flash_off_white"
+        android:src="@drawable/ic_action_flash_reverse"
         android:tint="@color/colorPrimaryDark" />
 
     <ImageButton
@@ -42,7 +42,7 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/button_click_gray"
         android:contentDescription="@string/change_camera"
-        android:src="@drawable/cam_reverse_white"
+        android:src="@drawable/ic_action_camera_reverse"
         android:tint="@color/colorPrimaryDark" />
 
     <ImageButton
@@ -54,6 +54,6 @@
         android:layout_marginBottom="10dp"
         android:background="@drawable/button_click_gray"
         android:contentDescription="@string/Capture_Image"
-        android:src="@drawable/cam_capture_white"
+        android:src="@drawable/ic_action_camera2"
         android:tint="@color/colorPrimaryDark" />
 </RelativeLayout>

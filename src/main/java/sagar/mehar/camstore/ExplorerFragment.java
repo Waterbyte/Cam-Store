@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.FileProvider;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import sagar.mehar.camstore.adapters.GridAdapter;
 import sagar.mehar.camstore.utils.CommonUtility;
@@ -24,7 +26,7 @@ import sagar.mehar.camstore.utils.SupportedFileFilter;
 
 /**
  * Created by Mountain on 04-11-18.
- */
+ * */
 
 public class ExplorerFragment extends Fragment {
     GridAdapter gridAdapter = null;
@@ -102,6 +104,7 @@ public class ExplorerFragment extends Fragment {
     }
 
     public void stopMultiSelect() {
+        Log.v("explorer fragment","stop multi select called");
         gridAdapter.setIsInChoiceMode(false);
         gridAdapter.clearSelectedState();
     }
@@ -114,13 +117,16 @@ public class ExplorerFragment extends Fragment {
         return selectedItems;
     }
 
+    public List<Integer> getSelectedItemsPosition() {
+        return gridAdapter.getSelectedItems();
+    }
+
     public int getSelectedItemCount() {
         return gridAdapter.getSelectedItemCount();
     }
 
-    public void notifyGridDataChanged(){
-        gridAdapter.notifyDataSetChanged();
-    }
+    public void removeSelectedItems(List<Integer> selection){gridAdapter.deleteSelectedState(selection);}
+
 
 
 }

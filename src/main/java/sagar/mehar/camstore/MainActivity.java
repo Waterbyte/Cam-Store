@@ -15,11 +15,13 @@ import android.view.View;
 
 import com.github.clans.fab.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 import sagar.mehar.camstore.adapters.GridAdapter;
+import sagar.mehar.camstore.async.DeleteFiles;
 import sagar.mehar.camstore.interfaces.ConfirmationInterface;
 import sagar.mehar.camstore.utils.ActionBarCallback;
 import sagar.mehar.camstore.utils.CameraActivity;
@@ -175,7 +177,19 @@ public class MainActivity extends BaseAppCompatActivity implements EasyPermissio
 
     @Override
     public void approved_confirm(String dialogOrigin) {
+        ArrayList<String> selectedFiles = explorerFragment.getSelectedItems();
 
+        if (dialogOrigin.equals(Constants.ORIGIN_DELETE)) {
+
+            new DeleteFiles(localContext, selectedFiles).execute();
+
+            List<Integer> selection = explorerFragment.getSelectedItemsPosition();  //need to be called before actionMode.finish() because that will clear selected items list
+
+            actionMode.finish();
+
+            explorerFragment.removeSelectedItems(selection);
+            Log.v("mainConfirmSection","remove selected item called on"+selection);
+        }
     }
 
     @Override

@@ -3,6 +3,7 @@ package sagar.mehar.camstore.adapters;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +33,12 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
     private SparseBooleanArray mSelectedItems;
     private boolean mIsInChoiceMode;
 
+    public GridAdapter(Context context, ArrayList<String> data) {
+        this.localContext = context;
+        this.mInflater = LayoutInflater.from(context);
+        this.mData = data;
+    }
+
     public boolean isSelected(int position) {
         return getSelectedItems().contains(position);
     }
@@ -53,6 +60,14 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
         }
     }
 
+    public void deleteSelectedState(List<Integer> selection) {
+        for (Integer i : selection) {
+            mData.remove(mData.get(i));
+            notifyItemRemoved(i);
+            notifyItemRangeChanged(i,1);
+        }
+    }
+
     public void beginChoiceMode(int position) {
         mSelectedItems = new SparseBooleanArray(getItemCount());
         setIsInChoiceMode(true);
@@ -66,25 +81,20 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
     public List<Integer> getSelectedItems() {
         List<Integer> items = new ArrayList<>(mSelectedItems.size());
         for (int i = 0; i < mSelectedItems.size(); ++i) {
-            items.add(mSelectedItems.keyAt(i));
+            if (mSelectedItems.get(mSelectedItems.keyAt(i))) {
+                items.add(mSelectedItems.keyAt(i));
+            }
         }
         return items;
-    }
-
-    public void setIsInChoiceMode(boolean isInChoiceMode) {
-        this.mIsInChoiceMode = isInChoiceMode;
-
     }
 
     public boolean getIsInChoiceMode() {
         return mIsInChoiceMode;
     }
 
+    public void setIsInChoiceMode(boolean isInChoiceMode) {
+        this.mIsInChoiceMode = isInChoiceMode;
 
-    public GridAdapter(Context context, ArrayList<String> data) {
-        this.localContext = context;
-        this.mInflater = LayoutInflater.from(context);
-        this.mData = data;
     }
 
     @NonNull
@@ -97,13 +107,15 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
         if (mIsInChoiceMode) {
-            viewHolder.gridCheckBox.setVisibility(View.VISIBLE);
+            if (mSelectedItems.get(position))
+                viewHolder.gridCheckBox.setVisibility(View.VISIBLE);
+            else
+                viewHolder.gridCheckBox.setVisibility(View.GONE);
             viewHolder.gridCheckBox.setChecked(mSelectedItems.get(position));
         } else {
             viewHolder.gridCheckBox.setChecked(false);
             viewHolder.gridCheckBox.setVisibility(View.GONE);
         }
-
 
         String filePath = mData.get(position);
         File imageFile = new File(filePath);
@@ -135,7 +147,6 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
     // parent activity will implement this method to respond to click events
     public interface ItemClickListener {
         void onItemClick(View view, int position);
-
         boolean onItemLongClicked(View view, int position);
     }
 

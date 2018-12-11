@@ -35,14 +35,13 @@ public class ActionBarCallback implements ActionMode.Callback {
 
     @Override
     public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-        ArrayList<String> selectedFiles = explorerFragment.getSelectedItems();
         switch (menuItem.getItemId()) {
             case R.id.sharemenu:
                 break;
             case R.id.renamemenu:
                 break;
             case R.id.deletemenu:
-                new DeleteFiles(context, selectedFiles).execute();
+                new ConfirmationDialog(context,Constants.ORIGIN_DELETE,context.getString(R.string.Delete),context.getString(R.string.deleteconfirm));
                 break;
             case R.id.action_encrypt:
                 break;

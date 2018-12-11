@@ -28,7 +28,6 @@ public class DeleteFiles extends AsyncTask<String, Void, Void> {
 
     @Override
     protected void onPostExecute(Void aVoid) {
-        ((MainActivity)localContext).getActionMode().finish();
         super.onPostExecute(aVoid);
     }
 }
